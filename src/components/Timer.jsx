@@ -9,11 +9,17 @@ class Timer extends Component {
       endTime: `00:00`,
       // seconds: 0,
       // minutes: 0,
-      inputMinutes: ""
+      inputMinutes: '',
+      chosenValue: 'break'
     };
 
     this.startSound = React.createRef();
     this.beebSound = React.createRef();
+  }
+
+  handleSelect = (event) => {
+    this.setState({ chosenValue: event.target.value })
+    console.log(this.state.chosenValue)
   }
 
 
@@ -43,7 +49,7 @@ class Timer extends Component {
     // voice alarm for each minute
 
     if (secondsLeft === 0 && minutes !== 0) {
-      responsiveVoice.speak(`${minutes} minutes remaining | till break ends`);
+      responsiveVoice.speak(`${minutes} minutes remaining | till ${this.state.chosenValue} ends`);
     } else if (secondsLeft === 20 && minutes === 0) {
       responsiveVoice.speak(`20 seconds remaining`);
     } else if (minutes === 0 && secondsLeft === 0) {
@@ -183,6 +189,11 @@ class Timer extends Component {
                 name="minutes"
                 placeholder="Enter Minutes and press Enter to begin"
               />
+              <select value={this.state.chosenValue} onChange={this.handleSelect}>
+                <option value="break" >break</option>
+                <option value="task">task</option>
+                <option value="deadline">deadline</option>
+              </select>
             </form>
           </div>
 

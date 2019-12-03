@@ -47,19 +47,19 @@ p {
     margin: auto;
 }
 
-.timer__controls > * {
-  /*flex:1;*/
-}
-
 .timer__controls form {
   /*flex:1;*/
   display: flex;
 }
 
 .timer__controls input {
-  flex:1;
+  flex: 0.7;
   border:0;
   padding: 0.5rem;
+}
+
+.timer__controls select {
+  flex: 0.3;
 }
 
 .timer__button, .stop {
